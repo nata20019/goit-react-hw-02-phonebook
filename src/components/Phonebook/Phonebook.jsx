@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import PropTypes, { number } from 'prop-types';
 
 export class Phonebook extends Component {
   state = {

@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import Section from './Section/Section';
 import Phonebook from './Phonebook/Phonebook';
 
