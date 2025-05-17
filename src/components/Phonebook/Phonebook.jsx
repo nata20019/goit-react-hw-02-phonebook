@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Form from 'react-bootstrap/Form';
+import { nanoid } from 'nanoid';
 
 export class Phonebook extends Component {
   state = {
@@ -15,8 +16,10 @@ export class Phonebook extends Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+    this.setState({ name: '', number: '' });
   };
   render() {
+    const { name, number } = this.state;
     return (
       <Form>
         <div className="mb-3">
@@ -30,6 +33,7 @@ export class Phonebook extends Component {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             required
+            value={name}
             onChange={this.handleChange}
           />
           <div id="emailHelp" className="form-text"></div>
@@ -44,6 +48,7 @@ export class Phonebook extends Component {
             className="form-control"
             id="exampleInputPassword1"
             required
+            value={number}
             onChange={this.handleChange}
           />
         </div>
