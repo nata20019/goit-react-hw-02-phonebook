@@ -6,11 +6,12 @@ export const App = () => {
     <div
       style={{
         height: '100vh',
-        display: 'flex',
+        display: 'block',
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
         color: '#010101',
+        margin: 100,
       }}
     >
       React homework template
