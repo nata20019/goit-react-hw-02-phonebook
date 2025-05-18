@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 export class Phonebook extends Component {
   state = {

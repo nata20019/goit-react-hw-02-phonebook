@@ -1,5 +1,6 @@
 import Section from './Section/Section';
 import Phonebook from './Phonebook/Phonebook';
+import Contacts from './Contacts/Contacts';
 
 export const App = () => {
   return (
@@ -17,6 +18,9 @@ export const App = () => {
       React homework template
       <Section title="Phonebook">
         <Phonebook />
+      </Section>
+      <Section title="Contacts">
+        <Contacts />
       </Section>
     </div>
   );
