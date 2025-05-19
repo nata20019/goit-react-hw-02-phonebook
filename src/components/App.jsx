@@ -4,13 +4,26 @@ import ContactsSearch from './ContactsSearch';
 import ContactsList from './ContactsList';
 import contactsJson from '../assets/contacts.json';
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
     contacts: contactsJson,
     filter: '',
-    name: '',
-    number: '',
+  };
+  handleAddContact = newContact => {
+    if (
+      this.state.contacts.some(
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      alert(`${newContact.name} is already in contacts.`);
+      return;
+    }
+
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, { id: nanoid(), ...newContact }],
+    }));
   };
 
   handleDelete = id => {
@@ -37,11 +50,11 @@ export class App extends Component {
       >
         React homework template
         <Section title="Phonebook">
-          <ContactForm />
+          <ContactForm onAddContact={this.handleAddContact} />
         </Section>
         <Section title="Contacts">
           <ContactsSearch />
-          <ContactsList contacts={contacts} />
+          <ContactsList contacts={contacts} onDelete={this.handleDelete} />
         </Section>
       </div>
     );

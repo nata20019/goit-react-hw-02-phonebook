@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 export class ContactForm extends Component {
@@ -19,21 +18,16 @@ export class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const newContact = {
-      id: nanoid(),
-      name: this.state.name,
-      number: this.state.number,
-    };
-    this.props.onAddContact(newContact);
+    this.props.onAddContact(this.state);
     console.log(this.state);
     this.setState({ name: '', number: '' });
   };
   render() {
     const { name, number } = this.state;
-    const nameInputId = nanoid();
-    const numberInputId = nanoid();
+    const nameInputId = 'nameInput';
+    const numberInputId = 'numberInput';
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <div className="mb-3">
           <label htmlFor={nameInputId} className="form-label">
             Name
