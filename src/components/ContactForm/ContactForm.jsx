@@ -1,8 +1,12 @@
 import { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
-export class Phonebook extends Component {
+export class ContactForm extends Component {
+  static propTypes = {
+    onAddContact: PropTypes.func.isRequired,
+  };
   state = {
     name: '',
     number: '',
@@ -15,38 +19,45 @@ export class Phonebook extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const newContact = {
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    };
+    this.props.onAddContact(newContact);
     console.log(this.state);
     this.setState({ name: '', number: '' });
   };
   render() {
     const { name, number } = this.state;
+    const nameInputId = nanoid();
+    const numberInputId = nanoid();
     return (
       <Form>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+          <label htmlFor={nameInputId} className="form-label">
             Name
           </label>
           <input
             type="text"
             name="name"
             className="form-control"
-            id="exampleInputEmail1"
+            id={nameInputId}
             aria-describedby="emailHelp"
             required
             value={name}
             onChange={this.handleChange}
           />
-          <div id="emailHelp" className="form-text"></div>
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+          <label htmlFor={numberInputId} className="form-label">
             Number
           </label>
           <input
             type="tel"
             name="number"
             className="form-control"
-            id="exampleInputPassword1"
+            id={numberInputId}
             required
             value={number}
             onChange={this.handleChange}
@@ -64,4 +75,4 @@ export class Phonebook extends Component {
   }
 }
 
-export default Phonebook;
+export default ContactForm;

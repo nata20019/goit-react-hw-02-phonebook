@@ -19,3 +19,5 @@ ContactsItem.propTypes = {
     number: PropTypes.string.isRequired,
   }).isRequired,
 };
+
+export default ContactsItem;
