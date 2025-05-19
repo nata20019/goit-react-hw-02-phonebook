@@ -1,26 +1,15 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import ContactsItem from '../Contacts';
 
-export class ContactsList extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-  };
-
-  render() {
-    const { name, number } = this.props;
-
-    return (
-      <div className="p-group" role="group" aria-label="Basic example">
-        <ul className="w-list">
-          <li className="list" key="good">
-            <p className="list-element">{name}</p>
-            <span className="value">{number}</span>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-}
+export const ContactsList = ({ contacts }) => {
+  return (
+    <div className="p-group" role="group" aria-label="Basic example">
+      <ul className="w-list">
+        {contacts.map(contact => (
+          <ContactsItem key={contact.id} contact={contact} />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default ContactsList;
