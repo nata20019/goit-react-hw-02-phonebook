@@ -34,8 +34,24 @@ export class App extends Component {
       return { contacts: newContactsList };
     });
   };
+
+  handleFilterChange = e => {
+    this.setState({ filter: e.target.value });
+  };
+
+  getFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
   render() {
-    const { contacts } = this.state;
+    // const { contacts } = this.state;
+    const { filter } = this.state;
+    const filteredContacts = this.getFilteredContacts();
     return (
       <div
         style={{
@@ -43,7 +59,7 @@ export class App extends Component {
           display: 'block',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: 40,
+          fontSize: 20,
           color: '#010101',
           margin: 100,
         }}
@@ -53,8 +69,14 @@ export class App extends Component {
           <ContactForm onAddContact={this.handleAddContact} />
         </Section>
         <Section title="Contacts">
-          <ContactsSearch />
-          <ContactsList contacts={contacts} onDelete={this.handleDelete} />
+          <ContactsSearch
+            filter={filter}
+            onFilterChange={this.handleFilterChange}
+          />
+          <ContactsList
+            contacts={filteredContacts}
+            onDelete={this.handleDelete}
+          />
         </Section>
       </div>
     );

@@ -1,7 +1,7 @@
 import { ContactsItem } from './ContactsItem';
 import PropTypes from 'prop-types';
 
-export const ContactsList = ({ contacts, onDeLete }) => {
+export const ContactsList = ({ contacts, onDelete }) => {
   return (
     <div className="p-group" role="group" aria-label="Basic example">
       <ul className="w-list">
@@ -9,7 +9,7 @@ export const ContactsList = ({ contacts, onDeLete }) => {
           <ContactsItem
             key={contact.id}
             contact={contact}
-            onDeLete={onDeLete}
+            onDelete={onDelete}
           />
         ))}
       </ul>
